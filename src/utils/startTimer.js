@@ -1,5 +1,9 @@
-const startTimer = (duration, display) => {
-  let timer = duration;
+const { INITIAL_TIMER_IN_MINUTES } = require('./constants');
+const normalizeTime = require('./normalizeTime');
+
+const startTimer = (display) => {
+  const timerInSeconds = 60 * INITIAL_TIMER_IN_MINUTES;
+  let timer = timerInSeconds;
   let minutes;
   let seconds;
   let timerContent;
@@ -9,8 +13,8 @@ const startTimer = (duration, display) => {
     minutes = Math.abs(parseInt(timer / 60, 10));
     seconds = Math.abs(parseInt(timer % 60, 10));
 
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    minutes = normalizeTime(minutes);
+    seconds = normalizeTime(seconds);
 
     timerContent = `${minutes}:${seconds}`;
 
