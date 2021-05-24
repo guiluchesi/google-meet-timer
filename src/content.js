@@ -1,6 +1,6 @@
-const createTimer = require('./utils/createTimer');
+const manageTimer = require('./utils/manageTimer');
 
 chrome
   .runtime
   .onMessage
-  .addListener(createTimer);
+  .addListener(manageTimer);
